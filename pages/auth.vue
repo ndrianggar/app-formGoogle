@@ -27,6 +27,14 @@
                 v-model="form.fullname"
                 :rules="rules.fullname"
                 />
+                <!-- <v-text-field
+                label="Email"
+                required
+                //tambahkan @keydown bukan @change
+                @keyDown="resetEmailExistMessage"
+                v-model="form.email"
+                :rules="rules.email"
+                /> -->
                 <v-text-field
                 label="Email"
                 required
@@ -92,6 +100,7 @@
         //pakai function anonymous
         data(){
           return{
+
             //tambahkan variable baru utk validasi
             emailExist:false,
 
@@ -158,6 +167,30 @@
         //     }
         //   }
         // }
+
+
+    //  methods:{
+    //     // tambahkan variable reset emailexits
+
+    //     resetEmailExistMessage(){
+    //           this.emailExist = false
+    //         },
+    //       async onSubmit(){
+    //         try{
+    //           if(this.$ref.form.validate()){
+    //             await this.$axios.$post('https//alamatfunctionbackend', this.form)
+    //           }
+    //         }catch(error){
+    //           console.log(error.response)
+    //             if(error.response.data.message == 'EMAIL_ALREADY_EXIST'){
+    //               this.emailExist=true
+    //               this.$ref.form.validate()
+    //             }
+              
+    //         }
+    //       }
+    //     }
+       
     }
 </script>
 

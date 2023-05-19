@@ -92,6 +92,8 @@
         //pakai function anonymous
         data(){
           return{
+            //tambahkan variable baru utk validasi
+            emailExist:false,
 
             //model
             form:{
@@ -119,9 +121,41 @@
             }
           }
         },
+
+        //pasang axios
         // methods:{
         //   async onSubmit(){
         //     this.$axios.$post('localhost/namamethodbackend', this.form)
+        //   }
+        // }
+        //pasang axios
+
+        // tambahkan trycatch untuk menghandel error
+        // try{
+                  //     this.$axios.$post('localhost/namamethodbackend', this.form)
+        // }catch(error){
+        //   if(error.response.data.message == 'EMAIL_ALREADY_EXIST')
+        // alert('EMAIL_ALREADY_EXIST')
+        // }
+        // tambahkan trycatch untuk menghandel error
+        
+
+
+        // buat validasi 2 sisi email ketika kosong & email exist
+        // methods:{
+        //   async onSubmit(){
+        //     try{
+        //       if(this.$ref.form.validate()){
+        //         await this.$axios.$post('https//alamatfunctionbackend', this.form)
+        //       }
+        //     }catch(error){
+        //       console.log(error.response)
+        //         if(error.response.data.message == 'EMAIL_ALREADY_EXIST'){
+        //           this.emailExist=true
+                  // this.$ref.form.validate()
+        //         }
+              
+        //     }
         //   }
         // }
     }

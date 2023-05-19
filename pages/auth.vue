@@ -15,29 +15,45 @@
           <v-toolbar dark color="primary"> Register</v-toolbar>
             <v-card-text> 
               <v-form>
+                <!-- <v-text-field
+                label="Name"
+                required => untuk validation
+                v-model="fullname" => model || bisa ditambahkan name form karena field turunan dari form
+                :rules="rules.fullname" => memasukkan dari rulles js yang dibuat
+                /> -->
                 <v-text-field
                 label="Name"
                 required
+                v-model="form.fullname"
+                :rules="rules.fullname"
                 />
                 <v-text-field
                 label="Email"
                 required
+                v-model="form.email"
+                :rules="rules.email"
                 />
                 <v-text-field
                 label="Password"
                 type="password"
+                v-model="form.password"
+                :rules="rules.password"
                 required
                 />
                 <v-text-field
                 label="Confirm Password"
                 type="password"
+                v-model="form.password_confirmation"
+                :rules="rules.password_confirmation"
                 required
                 />
               </v-form>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-            <v-btn color="primary"  outlined>Register</v-btn>
+            <!-- <v-btn color="primary"  outlined @click="onsubmit">Register</v-btn> -->
+            <v-btn color="primary"  outlined >Register</v-btn>
+
             </v-card-actions>
         </v-card>
         <!--d-flex => class css utk membuat sejajar objek
@@ -72,7 +88,42 @@
         layout:'auth', // merouting layout pada foldernya
         head:{
             title:'AUTH'
-        }
+        },
+        //pakai function anonymous
+        data(){
+          return{
+
+            //model
+            form:{
+              fullname:'',
+              email:'',
+              password:'',
+              password_confirmation:''
+            },
+            rules:{
+              fullname:[
+                (v)=> !!v || 'Fullname is required',
+              ],
+              email:[
+                (v)=> !!v || 'E-mail is required',
+                (v)=> /.+@.+\..+/.test(v) || 'E-mail must be valid',
+              ],
+              password: [
+                (v) => !!v || 'Password is required',
+                (v) => v?.length >= 6 || 'Password must be at least 6 character'
+              ],
+              password_confirmation:[
+                v => !!v || 'Password confirmation is required',
+                v => v === this.password || 'Password confirmation must be same with password'
+              ]
+            }
+          }
+        },
+        // methods:{
+        //   async onSubmit(){
+        //     this.$axios.$post('localhost/namamethodbackend', this.form)
+        //   }
+        // }
     }
 </script>
 

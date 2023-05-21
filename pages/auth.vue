@@ -24,8 +24,8 @@
                 <v-text-field
                 label="Name"
                 required
-                v-model="form.fullname"
                 :rules="rules.fullname"
+                v-model="fullname"
                 />
                 <!-- <v-text-field
                 label="Email"
@@ -38,21 +38,21 @@
                 <v-text-field
                 label="Email"
                 required
-                v-model="form.email"
                 :rules="rules.email"
+                v-model="email"
                 />
                 <v-text-field
                 label="Password"
                 type="password"
-                v-model="form.password"
                 :rules="rules.password"
+                v-model="password"
                 required
                 />
                 <v-text-field
                 label="Confirm Password"
                 type="password"
-                v-model="form.password_confirmation"
                 :rules="rules.password_confirmation"
+                v-model="password_confirmation"
                 required
                 />
               </v-form>
@@ -60,7 +60,16 @@
             <v-card-actions>
               <v-spacer></v-spacer>
             <!-- <v-btn color="primary"  outlined @click="onsubmit">Register</v-btn> -->
-            <v-btn color="primary"  outlined >Register</v-btn>
+            <!-- <v-btn 
+            color="primary"  
+            :disabled ="isLoading" => tambahkan function isLoading
+            outlined >Register</v-btn> -->
+            <v-btn 
+            :disabled="isLoading"
+            @click="onSubmit"
+            color="primary"  
+            outlined >Register</v-btn>
+
 
             </v-card-actions>
         </v-card>
@@ -103,7 +112,7 @@
 
             //tambahkan variable baru utk validasi
             emailExist:false,
-
+            isLoading:false,
             //model
             form:{
               fullname:'',
@@ -124,10 +133,12 @@
                 (v) => v?.length >= 6 || 'Password must be at least 6 character'
               ],
               password_confirmation:[
-                v => !!v || 'Password confirmation is required',
-                v => v === this.password || 'Password confirmation must be same with password'
+                (v) => !!v || 'Password confirmation is required',
+                (v) => v === this.password || `'Password confirmation must be same with password ${v}'`
+                //error not same karena memanggil model dengan form (objeknya) harunya langsung attribut
               ]
             }
+
           }
         },
 
@@ -190,6 +201,31 @@
     //         }
     //       }
     //     }
+
+    methods:{
+        resetEmailExistMessage(){
+              this.emailExist = false
+            },
+
+          async onSubmit(){
+            try{
+              if(this.$ref.form.validate()){
+                //=> tambahkan kondisi true diset setelah mengirim data
+              //  await this.$axios.$post('https//alamatfunctionbackend', this.form)
+              this.isLoading = true // jika true tombol disabel
+
+            }
+            }catch(error){
+              alert(error.response.data.message)
+              console.log(error.response)
+                if(error.response.data.message == 'EMAIL_ALREADY_EXIST'){
+                  this.emailExist=true
+                }
+              
+            }
+          }
+
+        }
        
     }
 </script>

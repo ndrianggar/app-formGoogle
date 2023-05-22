@@ -65,7 +65,7 @@
             :disabled ="isLoading" => tambahkan function isLoading
             outlined >Register</v-btn> -->
             <v-btn 
-            :disabled="isLoading"
+            :loading="isLoading"
             @click="onSubmit"
             color="primary"  
             outlined >Register</v-btn>
@@ -209,12 +209,16 @@
 
           async onSubmit(){
             try{
-              if(this.$ref.form.validate()){
+              if(this.isLoading == false){
+                this.isLoading = true // jika true tombol disabel
+                this.$router.push('/auth')
+              }
+              
+              // if(this.$ref.form.validate()){
                 //=> tambahkan kondisi true diset setelah mengirim data
               //  await this.$axios.$post('https//alamatfunctionbackend', this.form)
-              this.isLoading = true // jika true tombol disabel
 
-            }
+            // }
             }catch(error){
               alert(error.response.data.message)
               console.log(error.response)
@@ -223,6 +227,10 @@
                 }
               
             }
+            setTimeout(()=>{
+            this.isLoading = false
+            }, 3000
+            )
           }
 
         }

@@ -102,9 +102,9 @@
   </template>
   <script>
     export default{
-        layout:'auth', // merouting layout pada foldernya
+        layout:'reg', // merouting layout pada foldernya
         head:{
-            title:'AUTH'
+            title:'REGISTER'
         },
         //pakai function anonymous
         data(){

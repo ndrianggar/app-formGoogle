@@ -1,0 +1,10 @@
+{
+    "SERVER_ERROR": "Server mengalami gangguan",
+    "INVALID_PASSWORD": "Passwor salah",
+    "USER_NOT_FOUND": "User / email tidak ditemukan",
+
+    "FIELD_REQUIRED": "{field} ini harus diisi",
+    "FIELD_MIN": "{field} minimal {min} karakter",
+    "EMAIL_INVALID": "Format email tidak valid",
+    "FIELD_CONFIRM": "isi dari {fieldConfirm} tidak sama dengan {field}"
+}

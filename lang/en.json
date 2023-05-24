@@ -1,0 +1,10 @@
+{
+    "SERVER_ERROR": "Server error",
+    "INVALID_PASSWOR": "Passwor wrong",
+
+  "FIELD_REQUIRED": "This {field} is required",
+    "FIELD_MIN": "{field} minimum {min} characters",
+    "EMAIL_INVALID": "Invalid email format",
+    "FIELD_CONFIRM": "The contents of {fieldConfirm} are not the same as {field}"
+    
+}

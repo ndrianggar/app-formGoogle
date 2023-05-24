@@ -22,7 +22,7 @@
               ditaruh di catch this.isError = true
               -->
               <v-alert color="red lighten-2" v-if="message !=null">
-                {{ message }}
+                {{ $t(message) }}
               </v-alert>
                <v-form>
                  <v-text-field
@@ -62,9 +62,20 @@
          -->
          <div class="d-flex align-baseline">
            <p>Kamu sudah punya akun?</p>
+
+           <!--cara mengirim agar link ada parsing langguage atau selainnya
+               maka pakai syintax js :
+               1.pakai titik (:)
+               2. pakai to (to)
+               3. pakai kurung tutup "()"
+               4. nama url linknya "en/register"
+
+               contoh => :to=("en/register")
+
+          -->
            <v-btn
            text
-           to="/register"
+           :to="localePath('/register')"
            color="primary"
            :ripple="false"
            class="pl-1"
@@ -100,13 +111,16 @@
             },
             rules:{
               email:[
-                (v) => !!v || 'Email is required',
+                // (v) => !!v || 'Email is required', => cara lama
+                (v) => !!v || this.$t('FIELD_REQUIRED', {field:'email'}),
                 (v) => /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(v) || 'E-Mail must be valid',
                 // (v) => 
               ],
               password:[
-                (v) => !!v || 'Password is required',
-                (v) => v?.length >=6 || 'Password must be at least 6 character',
+                // (v) => !!v || 'Password is required',
+                (v) => !!v || this.$t('FIELD_REQUIRED', {field:'password'}),
+                (v) => v?.length >=6 || this.$t('FIELD_MIN', {field:'password', min:'6'})
+                // (v) => v?.length >=6 || 'Password must be at least 6 character',
               ],
             }
           }

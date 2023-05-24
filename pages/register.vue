@@ -122,19 +122,20 @@
             },
             rules:{
               fullname:[
-                (v)=> !!v || 'Fullname is required',
+                (v)=> !!v || this.$t('FIELD_REQUIRED', {FIELD:'fullname'}),
               ],
               email:[
-                (v)=> !!v || 'E-mail is required',
-                (v)=> /.+@.+\..+/.test(v) || 'E-mail must be valid',
-              ],
+                (v)=> !!v || this.$t('FIELD_REQUIRED', {FIELD:'email'}),
+                (v)=> /.+@.+\..+/.test(v) || this.$t('EMAIL_INVALID', {FIELD:'password'}),
+            ],
               password: [
-                (v) => !!v || 'Password is required',
-                (v) => v?.length >= 6 || 'Password must be at least 6 character'
+                (v) => !!v || this.$t('FIELD_REQUIRED', {FIELD:'password'}),
+                (v) => v?.length >= 6 || this.$t('FIELD_MIN', {min:'6'}),
               ],
               password_confirmation:[
-                (v) => !!v || 'Password confirmation is required',
-                (v) => v === this.password || `'Password confirmation must be same with password ${v}'`
+                (v) => !!v || this.$t('FIELD_REQUIRED', {FIELD:'password_confirmation'}),
+                // (v) => v === this.password || `'Password confirmation must be same with password ${v}'`
+                (v) => v === this.password || this.$t('FIELD_CONFIRM', {fieldConfirm:'6'}, {field:'password_confirmation'}),
                 //error not same karena memanggil model dengan form (objeknya) harunya langsung attribut
               ]
             }
